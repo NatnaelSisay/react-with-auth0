@@ -1,11 +1,24 @@
 import React from "react";
 
-function home(props) {
+import { useAuth0 } from "@auth0/auth0-react";
+
+const Home = (props) => {
+    const { user, isAuthenticated, isLoading } = useAuth0();
+    if (isLoading) {
+        return <div>Loading ...</div>;
+    }
     return (
         <div>
             <h1>Home page</h1>
+            {isAuthenticated && (
+                <div>
+                    <img src={user.picture} alt={user.name} />
+                    <h1>{user.name}</h1>
+                    <h2>{user.email}</h2>
+                </div>
+            )}
         </div>
     );
-}
+};
 
-export default home;
+export default Home;

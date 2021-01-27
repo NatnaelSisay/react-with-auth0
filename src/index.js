@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { BrowserRouter as Router } from "react-router-dom";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 import "./index.css";
 import App from "./App";
@@ -9,9 +10,15 @@ import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Router>
-            <App />
-        </Router>
+        <Auth0Provider
+            domain="java-auth-react.us.auth0.com"
+            clientId="xx0KcADYpBalkF9st2fqdZGF0chaqW07"
+            redirectUri={window.location.origin}
+        >
+            <Router>
+                <App />
+            </Router>
+        </Auth0Provider>
     </React.StrictMode>,
     document.getElementById("root")
 );
